@@ -1,0 +1,82 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Корзина — Робот-Забота{% endblock %}
+
+{% block content %}
+<section class="cart-section">
+    <h1 class="section-title">{# ТЕКСТ ОТ БРЕНДА: заголовок страницы — пример #}Корзина</h1>
+
+    {% if cart.is_empty %}
+        <div class="cart-empty">
+            <div class="cart-empty-icon">🛒</div>
+            <p class="cart-empty-text">
+                {# ТЕКСТ ОТ БРЕНДА: сообщение о пустой корзине — пример #}
+                В корзине пока ничего нет.
+            </p>
+            <a href="{% url 'catalog:index' %}" class="btn btn-primary">
+                {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Перейти в каталог
+            </a>
+        </div>
+    {% else %}
+        <div class="cart-list">
+            {% for item in items %}
+                <div class="cart-item">
+                    <div class="cart-item-media">
+                        {% if item.robot.image %}
+                            <img src="{{ item.robot.image.url }}" alt="{{ item.robot.name }}" class="cart-item-img">
+                        {% else %}
+                            {# ЗАМЕНИТЬ: миниатюра робота 80x80 #}
+                            <div class="cart-item-img cart-item-img-placeholder"></div>
+                        {% endif %}
+                    </div>
+
+                    <div class="cart-item-name">
+                        <a href="{% url 'catalog:robot_detail' item.robot.slug %}">{{ item.robot.name }}</a>
+                    </div>
+
+                    <div class="cart-item-price">{{ item.robot.price|floatformat:0 }} ₽</div>
+
+                    <div class="cart-item-qty">
+                        <form method="post" action="{% url 'cart:update' item.id %}" class="cart-qty-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="quantity" value="{{ item.quantity|add:'-1' }}">
+                            <button type="submit" class="cart-qty-btn" aria-label="Уменьшить количество">−</button>
+                        </form>
+                        <span class="cart-qty-value">{{ item.quantity }}</span>
+                        <form method="post" action="{% url 'cart:update' item.id %}" class="cart-qty-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="quantity" value="{{ item.quantity|add:'1' }}">
+                            <button type="submit" class="cart-qty-btn" aria-label="Увеличить количество">+</button>
+                        </form>
+                    </div>
+
+                    <div class="cart-item-subtotal">{{ item.subtotal|floatformat:0 }} ₽</div>
+
+                    <div class="cart-item-remove">
+                        <form method="post" action="{% url 'cart:remove' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="cart-remove-btn" aria-label="Удалить товар">×</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="cart-summary">
+            <p class="cart-summary-text">
+                {# ТЕКСТ ОТ БРЕНДА: итоговая строка — пример #}
+                Итого: {{ cart.total_items }} {{ cart.total_items|pluralize:"товар,товара,товаров" }} на сумму {{ cart.total_price|floatformat:0 }} ₽
+            </p>
+        </div>
+
+        <div class="cart-actions">
+            <a href="{% url 'catalog:index' %}" class="btn btn-secondary">
+                {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Продолжить покупки
+            </a>
+            <a href="#" class="btn btn-primary" onclick="alert('Оформление заказа скоро заработает'); return false;">
+                {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Оформить заказ
+            </a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

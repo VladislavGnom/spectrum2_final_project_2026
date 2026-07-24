@@ -45,9 +45,12 @@
                 <p class="robot-detail-status robot-detail-status-available">
                     {# ТЕКСТ ОТ БРЕНДА: статус — пример #}В наличии
                 </p>
-                <a href="{% url 'cart:index' %}" class="btn btn-primary robot-detail-cart-btn">
-                    {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}В корзину
-                </a>
+                <form method="post" action="{% url 'cart:add' robot.id %}" class="robot-detail-cart-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary robot-detail-cart-btn">
+                        {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}В корзину
+                    </button>
+                </form>
             {% else %}
                 <p class="robot-detail-status robot-detail-status-unavailable">
                     {# ТЕКСТ ОТ БРЕНДА: статус — пример #}Нет в наличии
