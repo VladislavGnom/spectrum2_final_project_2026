@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Робот-Забота — надёжный помощник в логистике{% endblock %}</title>
+    <meta name="description" content="{# ТЕКСТ ОТ БРЕНДА: мета-описание — пример, заменить после получения стратегии #}Робот-Забота — мобильная платформа, которая берёт на себя тяжёлую работу на складе и заботится о безопасности вашей команды.">
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <header class="site-header" id="site-header">
+        <nav class="nav-bar">
+            <a href="{% url 'core:index' %}" class="nav-logo">
+                {# ТЕКСТ ОТ БРЕНДА: название — пример, заменить после получения стратегии #}
+                Робот-Забота
+            </a>
+
+            <button class="nav-toggle" id="nav-toggle" aria-label="Открыть меню" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero" class="nav-link">Главная</a></li>
+                <li><a href="#about" class="nav-link">О проекте</a></li>
+                <li><a href="#team" class="nav-link">Команда</a></li>
+                <li><a href="#contact" class="nav-link">Контакты</a></li>
+                <li><a href="{% url 'catalog:index' %}" class="nav-link">Каталог</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span class="footer-logo">
+                {# ТЕКСТ ОТ БРЕНДА: название — пример, заменить после получения стратегии #}
+                Робот-Забота
+            </span>
+            <p class="footer-note">
+                {# ТЕКСТ ОТ БРЕНДА: подпись в футере — пример, заменить после получения стратегии #}
+                © 2026 Робот-Забота. Заботимся о вашей команде и вашем времени.
+            </p>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Наверх">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 19V5M12 5L6 11M12 5L18 11" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <script src="{% static 'core/script.js' %}"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

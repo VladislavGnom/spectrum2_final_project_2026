@@ -1,0 +1,151 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Секция 1: Hero -->
+    <section id="hero" class="hero">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    {# ТЕКСТ ОТ БРЕНДА: название — пример, заменить после получения стратегии #}
+                    Робот-Забота
+                </h1>
+                <p class="hero-slogan">
+                    {# ТЕКСТ ОТ БРЕНДА: слоган — пример, заменить после получения стратегии #}
+                    Ваш надёжный помощник в логистике
+                </p>
+                <p class="hero-subtext">
+                    {# ТЕКСТ ОТ БРЕНДА: подводка — пример, заменить после получения стратегии #}
+                    Мы верим, что забота о людях начинается с того, чтобы снять с их плеч самое тяжёлое.
+                </p>
+                <a href="#about" class="btn btn-primary">
+                    {# ТЕКСТ ОТ БРЕНДА: текст кнопки — пример, заменить после получения стратегии #}
+                    Познакомиться ближе
+                </a>
+            </div>
+
+            <div class="hero-visual">
+                {# ЗАМЕНИТЬ: рендер робота #}
+                <div class="hero-visual-placeholder">
+                    <span>600 × 400</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 2: О проекте -->
+    <section id="about" class="about">
+        <div class="section-inner">
+            <h2 class="section-title">
+                {# ТЕКСТ ОТ БРЕНДА: заголовок — пример, заменить после получения стратегии #}
+                Почему мы создали Робота-Заботу
+            </h2>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">{# ЗАМЕНИТЬ: иконка #}</div>
+                    <h3 class="card-title">
+                        {# ТЕКСТ ОТ БРЕНДА: заголовок карточки — пример, заменить после получения стратегии #}
+                        Безопасность
+                    </h3>
+                    <p class="card-text">
+                        {# ТЕКСТ ОТ БРЕНДА: описание карточки — пример, заменить после получения стратегии #}
+                        Робот берёт на себя тяжёлые грузы, снижая риск травм и перегрузок у людей на складе.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">{# ЗАМЕНИТЬ: иконка #}</div>
+                    <h3 class="card-title">
+                        {# ТЕКСТ ОТ БРЕНДА: заголовок карточки — пример, заменить после получения стратегии #}
+                        Экономия времени
+                    </h3>
+                    <p class="card-text">
+                        {# ТЕКСТ ОТ БРЕНДА: описание карточки — пример, заменить после получения стратегии #}
+                        Автономная навигация избавляет команду от постоянного контроля за каждым перемещением.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">{# ЗАМЕНИТЬ: иконка #}</div>
+                    <h3 class="card-title">
+                        {# ТЕКСТ ОТ БРЕНДА: заголовок карточки — пример, заменить после получения стратегии #}
+                        Лёгкая интеграция
+                    </h3>
+                    <p class="card-text">
+                        {# ТЕКСТ ОТ БРЕНДА: описание карточки — пример, заменить после получения стратегии #}
+                        Встраивается в любой склад без перестройки существующих процессов и логистики.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 3: Команда -->
+    <section id="team" class="team">
+        <div class="section-inner">
+            <h2 class="section-title">
+                {# ТЕКСТ ОТ БРЕНДА: заголовок — пример, заменить после получения стратегии #}
+                Кто стоит за проектом
+            </h2>
+
+            <div class="cards-grid cards-grid--team">
+                <div class="card card--team">
+                    <div class="avatar">{# ЗАМЕНИТЬ: аватар #}</div>
+                    <h3 class="card-title">Инженер-робототехник</h3>
+                </div>
+                <div class="card card--team">
+                    <div class="avatar">{# ЗАМЕНИТЬ: аватар #}</div>
+                    <h3 class="card-title">Дизайнер</h3>
+                </div>
+                <div class="card card--team">
+                    <div class="avatar">{# ЗАМЕНИТЬ: аватар #}</div>
+                    <h3 class="card-title">Менеджер проекта</h3>
+                </div>
+                <div class="card card--team">
+                    <div class="avatar">{# ЗАМЕНИТЬ: аватар #}</div>
+                    <h3 class="card-title">Разработчик</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция 4: Контакты -->
+    <section id="contact" class="contact">
+        <div class="section-inner section-inner--narrow">
+            <h2 class="section-title">
+                {# ТЕКСТ ОТ БРЕНДА: заголовок — пример, заменить после получения стратегии #}
+                Давайте обсудим, как мы можем помочь вашему бизнесу
+            </h2>
+
+            <form id="contact-form" class="contact-form" novalidate>
+                {% csrf_token %}
+                <div class="form-field">
+                    <label for="id_name">Имя</label>
+                    <input type="text" id="id_name" name="name" autocomplete="name" required>
+                    <span class="field-error" data-error-for="name"></span>
+                </div>
+
+                <div class="form-field">
+                    <label for="id_email">Email</label>
+                    <input type="email" id="id_email" name="email" autocomplete="email" required>
+                    <span class="field-error" data-error-for="email"></span>
+                </div>
+
+                <div class="form-field">
+                    <label for="id_message">Сообщение</label>
+                    <textarea id="id_message" name="message" rows="5" required></textarea>
+                    <span class="field-error" data-error-for="message"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="contact-submit-btn">
+                    Отправить
+                </button>
+
+                <p class="form-success" id="form-success" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}

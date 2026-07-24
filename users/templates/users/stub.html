@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ placeholder_title }} — Робот-Забота{% endblock %}
+
+{% block content %}
+    <section class="section-inner" style="padding-top: 140px; text-align: center; min-height: 50vh;">
+        <h1 class="section-title">{{ placeholder_title }}</h1>
+        <p>{# ТЕКСТ ОТ БРЕНДА: заглушка раздела — пример, заменить после получения стратегии #}{{ placeholder_text }}</p>
+        <a href="{% url 'core:index' %}" class="btn btn-primary">На главную</a>
+    </section>
+{% endblock %}
