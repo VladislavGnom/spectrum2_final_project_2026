@@ -28,6 +28,6 @@ def contact_submit(request):
     form = ContactForm(payload)
     if form.is_valid():
         # ЗАМЕНИТЬ: здесь в будущем — отправка письма или сохранение лида.
-        return JsonResponse({'ok': True, 'message': 'Спасибо! Мы свяжемся с вами в ближайшее время'})
+        return JsonResponse({'ok': True, 'message': 'Мы подберём решение для вашей семьи и свяжемся с вами в ближайшее время'})
 
     return JsonResponse({'ok': False, 'errors': form.errors.get_json_data()}, status=400)

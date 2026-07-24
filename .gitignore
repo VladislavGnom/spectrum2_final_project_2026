@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# База данных
+db.sqlite3
+
+# Медиа и статические файлы
+media/
+staticfiles/
+
+# Настройки и секреты
+local_settings.py
+.env
+
+# Логи и IDE
+*.log
+.idea/
+*.ipynb_checkpoints/

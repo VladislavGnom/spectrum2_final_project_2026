@@ -150,21 +150,21 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(function (result) {
                 if (result.body && result.body.ok) {
-                    successEl.textContent = 'Спасибо! Мы свяжемся с вами в ближайшее время';
+                    successEl.textContent = 'Мы подберём решение для вашей семьи и свяжемся с вами в ближайшее время';
                     form.reset();
                 } else if (result.body && result.body.errors) {
                     Object.keys(result.body.errors).forEach(function (field) {
                         setFieldError(field, result.body.errors[field][0].message);
                     });
                 } else {
-                    successEl.textContent = 'Спасибо! Мы свяжемся с вами в ближайшее время';
+                    successEl.textContent = 'Мы подберём решение для вашей семьи и свяжемся с вами в ближайшее время';
                     form.reset();
                 }
             })
             .catch(function (error) {
                 console.log('Ошибка отправки формы (данные сохранены только в консоли):', error);
                 // Даже при недоступности бэкенда — не оставляем пользователя без ответа
-                successEl.textContent = 'Спасибо! Мы свяжемся с вами в ближайшее время';
+                successEl.textContent = 'Мы подберём решение для вашей семьи и свяжемся с вами в ближайшее время';
                 form.reset();
             })
             .finally(function () {

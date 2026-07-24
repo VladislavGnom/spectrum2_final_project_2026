@@ -10,6 +10,6 @@ def index(request):
     """
     context = {
         'placeholder_title': 'Каталог роботов',
-        'placeholder_text': 'Скоро здесь будет каталог',
+        'placeholder_text': 'Скоро здесь будут модели роботов-нянь',
     }
     return render(request, 'catalog/stub.html', context)

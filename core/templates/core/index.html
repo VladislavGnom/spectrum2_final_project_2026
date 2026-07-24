@@ -13,11 +13,11 @@
                 </h1>
                 <p class="hero-slogan">
                     {# ТЕКСТ ОТ БРЕНДА: слоган — пример, заменить после получения стратегии #}
-                    Ваш надёжный помощник в логистике
+                    Спокойствие за ваших близких — 24 часа в сутки
                 </p>
                 <p class="hero-subtext">
                     {# ТЕКСТ ОТ БРЕНДА: подводка — пример, заменить после получения стратегии #}
-                    Мы верим, что забота о людях начинается с того, чтобы снять с их плеч самое тяжёлое.
+                    Робот-няня, которая всегда рядом: напомнит, поможет, сообщит вам, если что-то пойдёт не так
                 </p>
                 <a href="#about" class="btn btn-primary">
                     {# ТЕКСТ ОТ БРЕНДА: текст кнопки — пример, заменить после получения стратегии #}
@@ -26,7 +26,7 @@
             </div>
 
             <div class="hero-visual">
-                {# ЗАМЕНИТЬ: рендер робота #}
+                {# ЗАМЕНИТЬ: рендер робота-няни рядом с пожилым человеком в уютной комнате #}
                 <div class="hero-visual-placeholder">
                     <span>600 × 400</span>
                 </div>
@@ -44,38 +44,47 @@
 
             <div class="cards-grid">
                 <div class="card">
-                    <div class="card-icon">{# ЗАМЕНИТЬ: иконка #}</div>
+                    <div class="card-icon">
+                        {# ЗАМЕНИТЬ: фото робота, напоминающего о лекарствах #}
+                        💊
+                    </div>
                     <h3 class="card-title">
                         {# ТЕКСТ ОТ БРЕНДА: заголовок карточки — пример, заменить после получения стратегии #}
-                        Безопасность
+                        Контроль здоровья
                     </h3>
                     <p class="card-text">
                         {# ТЕКСТ ОТ БРЕНДА: описание карточки — пример, заменить после получения стратегии #}
-                        Робот берёт на себя тяжёлые грузы, снижая риск травм и перегрузок у людей на складе.
+                        Напоминает о приёме лекарств, измеряет давление и пульс, следит за самочувствием.
                     </p>
                 </div>
 
                 <div class="card">
-                    <div class="card-icon">{# ЗАМЕНИТЬ: иконка #}</div>
+                    <div class="card-icon">
+                        {# ЗАМЕНИТЬ: фото робота с пожилым человеком #}
+                        🛡️
+                    </div>
                     <h3 class="card-title">
                         {# ТЕКСТ ОТ БРЕНДА: заголовок карточки — пример, заменить после получения стратегии #}
-                        Экономия времени
+                        Безопасность 24/7
                     </h3>
                     <p class="card-text">
                         {# ТЕКСТ ОТ БРЕНДА: описание карточки — пример, заменить после получения стратегии #}
-                        Автономная навигация избавляет команду от постоянного контроля за каждым перемещением.
+                        Мгновенно распознаёт падение и отправляет уведомление родственникам и врачу.
                     </p>
                 </div>
 
                 <div class="card">
-                    <div class="card-icon">{# ЗАМЕНИТЬ: иконка #}</div>
+                    <div class="card-icon">
+                        {# ЗАМЕНИТЬ: фото интерфейса приложения для родственников #}
+                        💬
+                    </div>
                     <h3 class="card-title">
                         {# ТЕКСТ ОТ БРЕНДА: заголовок карточки — пример, заменить после получения стратегии #}
-                        Лёгкая интеграция
+                        Связь с близкими
                     </h3>
                     <p class="card-text">
                         {# ТЕКСТ ОТ БРЕНДА: описание карточки — пример, заменить после получения стратегии #}
-                        Встраивается в любой склад без перестройки существующих процессов и логистики.
+                        Видеозвонки, голосовые сообщения и ежедневные отчёты для семьи.
                     </p>
                 </div>
             </div>
@@ -116,26 +125,26 @@
         <div class="section-inner section-inner--narrow">
             <h2 class="section-title">
                 {# ТЕКСТ ОТ БРЕНДА: заголовок — пример, заменить после получения стратегии #}
-                Давайте обсудим, как мы можем помочь вашему бизнесу
+                Хотите спокойствия за своих близких?
             </h2>
 
             <form id="contact-form" class="contact-form" novalidate>
                 {% csrf_token %}
                 <div class="form-field">
                     <label for="id_name">Имя</label>
-                    <input type="text" id="id_name" name="name" autocomplete="name" required>
+                    <input type="text" id="id_name" name="name" autocomplete="name" placeholder="Ваше имя" required>
                     <span class="field-error" data-error-for="name"></span>
                 </div>
 
                 <div class="form-field">
                     <label for="id_email">Email</label>
-                    <input type="email" id="id_email" name="email" autocomplete="email" required>
+                    <input type="email" id="id_email" name="email" autocomplete="email" placeholder="email@example.com" required>
                     <span class="field-error" data-error-for="email"></span>
                 </div>
 
                 <div class="form-field">
                     <label for="id_message">Сообщение</label>
-                    <textarea id="id_message" name="message" rows="5" required></textarea>
+                    <textarea id="id_message" name="message" rows="5" placeholder="Расскажите о вашей ситуации..." required></textarea>
                     <span class="field-error" data-error-for="message"></span>
                 </div>
 
