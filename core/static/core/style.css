@@ -649,3 +649,278 @@ img {
     color: #D4887A;
     border: 1px solid #D4887A;
 }
+
+/* ==== Каталог: сетка карточек ==== */
+.catalog-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 24px 64px;
+}
+
+.catalog-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.catalog-intro {
+    color: #666666;
+    max-width: 640px;
+    margin: 12px auto 0;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.robot-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.robot-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.1);
+}
+
+.robot-card-unavailable {
+    opacity: 0.75;
+}
+
+.robot-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #FDF4E3;
+}
+
+.robot-card-img-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999999;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 16px;
+}
+
+.robot-card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.robot-card-title {
+    color: #333333;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.robot-card-desc {
+    color: #666666;
+    font-size: 0.92rem;
+    margin-bottom: 14px;
+    flex-grow: 1;
+}
+
+.robot-card-price {
+    color: #333333;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.robot-card-status {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.robot-card-status-unavailable {
+    color: #D4887A;
+}
+
+.robot-card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn-secondary {
+    background: #FDF4E3;
+    color: #333333;
+    border: 1px solid #EFE3A0;
+}
+
+.btn-secondary:hover {
+    background: #F5E9C8;
+}
+
+.catalog-empty {
+    text-align: center;
+    color: #666666;
+    padding: 48px 24px;
+}
+
+/* ==== Хлебные крошки ==== */
+.breadcrumbs {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    font-size: 0.88rem;
+    color: #888888;
+    margin-bottom: 24px;
+}
+
+.breadcrumbs a {
+    color: #888888;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    color: #333333;
+    text-decoration: underline;
+}
+
+.breadcrumbs-sep {
+    margin: 0 6px;
+}
+
+.breadcrumbs-current {
+    color: #333333;
+    font-weight: 600;
+}
+
+/* ==== Детальная страница робота ==== */
+.robot-detail-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 24px 64px;
+}
+
+.robot-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.robot-detail-img {
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #FDF4E3;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.robot-detail-img-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999999;
+    text-align: center;
+    padding: 24px;
+}
+
+.robot-detail-title {
+    color: #333333;
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+.robot-detail-desc {
+    color: #555555;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.robot-detail-subtitle {
+    color: #333333;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.robot-detail-features {
+    list-style: none;
+    margin-bottom: 24px;
+    padding: 0;
+}
+
+.robot-detail-features li {
+    color: #555555;
+    padding: 8px 0 8px 24px;
+    border-bottom: 1px solid #F0F0F0;
+    position: relative;
+}
+
+.robot-detail-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #6B8E6B;
+    font-weight: 700;
+}
+
+.robot-detail-price {
+    color: #333333;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.robot-detail-status {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.robot-detail-status-available {
+    color: #6B8E6B;
+}
+
+.robot-detail-status-unavailable {
+    color: #D4887A;
+}
+
+.robot-detail-cart-btn {
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.robot-detail-back-btn {
+    display: inline-block;
+}
+
+/* ==== Адаптив: каталог и детальная страница ==== */
+@media (max-width: 900px) {
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .robot-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .robot-detail-img {
+        max-width: 100%;
+        height: 300px;
+    }
+}
+
+@media (max-width: 560px) {
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .robot-card-actions {
+        flex-direction: column;
+    }
+}

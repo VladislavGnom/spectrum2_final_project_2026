@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ robot.name }} — Робот-Забота{% endblock %}
+
+{% block content %}
+<section class="robot-detail-section">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <a href="{% url 'core:index' %}">Главная</a>
+        <span class="breadcrumbs-sep">/</span>
+        <a href="{% url 'catalog:index' %}">Каталог</a>
+        <span class="breadcrumbs-sep">/</span>
+        <span class="breadcrumbs-current">{{ robot.name }}</span>
+    </nav>
+
+    <div class="robot-detail-grid">
+        <div class="robot-detail-media">
+            {% if robot.image %}
+                <img src="{{ robot.image.url }}" alt="{{ robot.name }}" class="robot-detail-img">
+            {% else %}
+                {# ЗАМЕНИТЬ: фото робота 400x400 #}
+                <div class="robot-detail-img robot-detail-img-placeholder">
+                    <span>{# ТЕКСТ ОТ БРЕНДА: подпись заглушки — пример #}Фото скоро появится</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="robot-detail-info">
+            <h1 class="robot-detail-title">{{ robot.name }}</h1>
+            <p class="robot-detail-desc">{{ robot.full_description }}</p>
+
+            {% if features_list %}
+                <h2 class="robot-detail-subtitle">
+                    {# ТЕКСТ ОТ БРЕНДА: заголовок блока — пример #}Ключевые характеристики
+                </h2>
+                <ul class="robot-detail-features">
+                    {% for feature in features_list %}
+                        <li>{{ feature }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <p class="robot-detail-price">{{ robot.price|floatformat:0 }} ₽</p>
+
+            {% if robot.is_available %}
+                <p class="robot-detail-status robot-detail-status-available">
+                    {# ТЕКСТ ОТ БРЕНДА: статус — пример #}В наличии
+                </p>
+                <a href="{% url 'cart:index' %}" class="btn btn-primary robot-detail-cart-btn">
+                    {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}В корзину
+                </a>
+            {% else %}
+                <p class="robot-detail-status robot-detail-status-unavailable">
+                    {# ТЕКСТ ОТ БРЕНДА: статус — пример #}Нет в наличии
+                </p>
+            {% endif %}
+
+            <a href="{% url 'catalog:index' %}" class="btn btn-secondary robot-detail-back-btn">
+                {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Назад в каталог
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

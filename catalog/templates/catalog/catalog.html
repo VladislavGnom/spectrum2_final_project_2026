@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ page_title }} — Робот-Забота{% endblock %}
+
+{% block content %}
+<section class="catalog-section">
+    <div class="catalog-header">
+        <h1 class="section-title">{{ page_title }}</h1>
+        <p class="catalog-intro">
+            {# ТЕКСТ ОТ БРЕНДА: вводный текст раздела — пример, заменить после получения стратегии #}
+            Каждая модель разработана для спокойствия ваших близких и вашего собственного. Выберите робота, который подойдёт именно вашей семье.
+        </p>
+    </div>
+
+    {% if robots %}
+        <div class="catalog-grid">
+            {% for robot in robots %}
+                <div class="robot-card {% if not robot.is_available %}robot-card-unavailable{% endif %}">
+                    {% if robot.image %}
+                        <img src="{{ robot.image.url }}" alt="{{ robot.name }}" class="robot-card-img">
+                    {% else %}
+                        {# ЗАМЕНИТЬ: фото робота #}
+                        <div class="robot-card-img robot-card-img-placeholder">
+                            <span>{# ТЕКСТ ОТ БРЕНДА: подпись заглушки — пример #}Фото скоро появится</span>
+                        </div>
+                    {% endif %}
+
+                    <div class="robot-card-body">
+                        <h2 class="robot-card-title">{{ robot.name }}</h2>
+                        <p class="robot-card-desc">
+                            {% if robot.short_description|length > 100 %}
+                                {{ robot.short_description|slice:":100" }}…
+                            {% else %}
+                                {{ robot.short_description }}
+                            {% endif %}
+                        </p>
+                        <p class="robot-card-price">{{ robot.price|floatformat:0 }} ₽</p>
+
+                        {% if not robot.is_available %}
+                            <p class="robot-card-status robot-card-status-unavailable">
+                                {# ТЕКСТ ОТ БРЕНДА: статус — пример #}Нет в наличии
+                            </p>
+                        {% endif %}
+
+                        <div class="robot-card-actions">
+                            <a href="{% url 'catalog:robot_detail' robot.slug %}" class="btn btn-secondary">
+                                {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Подробнее
+                            </a>
+                            <a href="{% url 'cart:index' %}" class="btn btn-primary">
+                                {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}В корзину
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="catalog-empty">
+            {# ТЕКСТ ОТ БРЕНДА: сообщение при пустом каталоге — пример #}
+            Модели скоро появятся в каталоге. Оставьте заявку, и мы сообщим вам о старте продаж.
+        </p>
+    {% endif %}
+</section>
+{% endblock %}
