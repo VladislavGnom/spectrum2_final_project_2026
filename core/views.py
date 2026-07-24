@@ -2,32 +2,41 @@ import json
 
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_POST
 
 from .forms import ContactForm
+from .models import ContactRequest
 
 
 def index(request):
     """Одностраничный лендинг: Hero, О проекте, Команда, Контакты."""
     return render(request, 'core/index.html')
 
-
-@require_http_methods(['POST'])
+@require_POST
 def contact_submit(request):
     """
-    Приём формы обратной связи через fetch (без перезагрузки страницы).
-
-    Ожидает JSON {name, email, message}. Сейчас только валидирует и
-    возвращает статус — интеграцию с почтой/CRM подключить здесь позже.
+    Принимает данные формы обратной связи как JSON, валидирует их
+    и сохраняет как заявку (ContactRequest) для последующей обработки в админке.
     """
     try:
-        payload = json.loads(request.body)
-    except (json.JSONDecodeError, TypeError):
-        payload = request.POST
+        data = json.loads(request.body)
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        return JsonResponse({'ok': False, 'errors': {'__all__': ['Некорректный формат запроса.']}}, status=400)
 
-    form = ContactForm(payload)
+    form = ContactForm(data)
+
     if form.is_valid():
-        # ЗАМЕНИТЬ: здесь в будущем — отправка письма или сохранение лида.
-        return JsonResponse({'ok': True, 'message': 'Мы подберём решение для вашей семьи и свяжемся с вами в ближайшее время'})
+        ContactRequest.objects.create(
+            name=form.cleaned_data['name'],
+            email=form.cleaned_data['email'],
+            message=form.cleaned_data['message'],
+        )
+        return JsonResponse({
+            'ok': True,
+            'message': 'Спасибо! Мы свяжемся с вами в ближайшее время.',
+        })
 
-    return JsonResponse({'ok': False, 'errors': form.errors.get_json_data()}, status=400)
+    return JsonResponse({
+        'ok': False,
+        'errors': form.errors,
+    }, status=400)

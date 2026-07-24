@@ -1,0 +1,42 @@
+[
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$8TvcxWT4CaB1$0MFdyDp2xHBHNNQtSFQC8sWgu4DeO2FP8nVq/nTeziU=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "Администратор",
+            "last_name": "",
+            "middle_name": "",
+            "email": "admin@zabota.ru",
+            "phone": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2026-07-01T09:00:00Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$Logc8GpVXrZF$Qq/0QQtz8tY3KY+p76DQ/8BPzKhe+GNZRYKUiDUovV8=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "user",
+            "first_name": "Анна",
+            "last_name": "",
+            "middle_name": "",
+            "email": "user@zabota.ru",
+            "phone": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2026-07-05T12:30:00Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

@@ -20,7 +20,7 @@ def catalog_view(request):
 
     context = {
         'robots': robots,
-        'page_title': 'Каталог роботов-нянь',
+        'page_title': 'Каталог CAREBOTS',
     }
     return render(request, 'catalog/catalog.html', context)
 
