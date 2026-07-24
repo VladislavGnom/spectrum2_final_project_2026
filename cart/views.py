@@ -26,10 +26,17 @@ def cart_view(request):
 @require_POST
 def add_to_cart(request, robot_id):
     """Добавляет робота в корзину. Если он уже там — увеличивает количество."""
-    robot = Robot.objects.filter(pk=robot_id, is_available=True).first()
+    robot = Robot.objects.filter(pk=robot_id).first()
 
-    if robot is None:
+    if robot is None or not robot.is_available:
         messages.error(request, 'Этот робот сейчас недоступен для заказа.')
+        return redirect('catalog:index')
+
+    if robot.coming_soon:
+        messages.warning(
+            request,
+            'Эта модель скоро появится в продаже. Оставьте заявку, чтобы узнать первыми!',
+        )
         return redirect('catalog:index')
 
     cart, _ = Cart.objects.get_or_create(user=request.user)

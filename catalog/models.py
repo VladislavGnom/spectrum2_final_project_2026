@@ -23,6 +23,11 @@ class Robot(models.Model):
         help_text='Пример: ["Пульсоксиметр", "Видеосвязь 24/7", "Датчик падений"]',
     )
     is_available = models.BooleanField('В наличии', default=True)
+    coming_soon = models.BooleanField(
+        'Скоро в продаже',
+        default=False,
+        help_text='Показывать в каталоге с пометкой «Скоро», без возможности добавить в корзину.',
+    )
     created_at = models.DateTimeField('Дата добавления', auto_now_add=True)
 
     class Meta:

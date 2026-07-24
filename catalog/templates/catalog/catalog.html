@@ -15,7 +15,13 @@
     {% if robots %}
         <div class="catalog-grid">
             {% for robot in robots %}
-                <div class="robot-card {% if not robot.is_available %}robot-card-unavailable{% endif %}">
+                <div class="robot-card {% if not robot.is_available and not robot.coming_soon %}robot-card-unavailable{% endif %} {% if robot.coming_soon %}robot-card-coming-soon{% endif %}">
+                    {% if robot.coming_soon %}
+                        <span class="robot-card-badge">
+                            {# ТЕКСТ ОТ БРЕНДА: плашка — пример #}Скоро в продаже
+                        </span>
+                    {% endif %}
+
                     {% if robot.image %}
                         <img src="{{ robot.image.url }}" alt="{{ robot.name }}" class="robot-card-img">
                     {% else %}
@@ -36,7 +42,7 @@
                         </p>
                         <p class="robot-card-price">{{ robot.price|floatformat:0 }} ₽</p>
 
-                        {% if not robot.is_available %}
+                        {% if not robot.is_available and not robot.coming_soon %}
                             <p class="robot-card-status robot-card-status-unavailable">
                                 {# ТЕКСТ ОТ БРЕНДА: статус — пример #}Нет в наличии
                             </p>
@@ -46,7 +52,11 @@
                             <a href="{% url 'catalog:robot_detail' robot.slug %}" class="btn btn-secondary">
                                 {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Подробнее
                             </a>
-                            {% if robot.is_available %}
+                            {% if robot.coming_soon %}
+                                <a href="{% url 'core:index' %}#contact" class="btn btn-primary">
+                                    {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Узнать о старте продаж
+                                </a>
+                            {% elif robot.is_available %}
                                 <form method="post" action="{% url 'cart:add' robot.id %}" class="robot-card-cart-form">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-primary">

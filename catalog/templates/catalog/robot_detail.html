@@ -14,6 +14,12 @@
 
     <div class="robot-detail-grid">
         <div class="robot-detail-media">
+            {% if robot.coming_soon %}
+                <span class="robot-detail-badge">
+                    {# ТЕКСТ ОТ БРЕНДА: плашка — пример #}Скоро в продаже
+                </span>
+            {% endif %}
+
             {% if robot.image %}
                 <img src="{{ robot.image.url }}" alt="{{ robot.name }}" class="robot-detail-img">
             {% else %}
@@ -41,7 +47,14 @@
 
             <p class="robot-detail-price">{{ robot.price|floatformat:0 }} ₽</p>
 
-            {% if robot.is_available %}
+            {% if robot.coming_soon %}
+                <p class="robot-detail-status robot-detail-status-coming-soon">
+                    {# ТЕКСТ ОТ БРЕНДА: статус — пример #}Скоро в продаже
+                </p>
+                <a href="{% url 'core:index' %}#contact" class="btn btn-primary robot-detail-cart-btn">
+                    {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Оставить заявку
+                </a>
+            {% elif robot.is_available %}
                 <p class="robot-detail-status robot-detail-status-available">
                     {# ТЕКСТ ОТ БРЕНДА: статус — пример #}В наличии
                 </p>

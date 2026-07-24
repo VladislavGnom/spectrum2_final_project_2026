@@ -1483,3 +1483,55 @@ img {
         text-align: center;
     }
 }
+
+/* ==== Плашка «Скоро в продаже» ==== */
+.robot-card {
+    position: relative;
+}
+
+.robot-card-coming-soon {
+    opacity: 0.85;
+}
+
+.robot-card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    background: #FAF0BE;
+    color: #333333;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.robot-detail-media {
+    position: relative;
+}
+
+.robot-detail-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    background: #FAF0BE;
+    color: #333333;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.robot-detail-status-coming-soon {
+    color: #8A7B2E;
+}
+
+/* ==== Сообщение-предупреждение (messages framework) ==== */
+.message-warning {
+    background: #FDF4E3;
+    color: #8A7B2E;
+    border: 1px solid #FAF0BE;
+}
