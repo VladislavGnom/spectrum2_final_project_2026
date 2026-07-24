@@ -1,0 +1,59 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{# ТЕКСТ ОТ БРЕНДА: заголовок вкладки — пример #}Заказ оформлен — Робот-Забота{% endblock %}
+
+{% block content %}
+<section class="success-section">
+    <div class="success-card">
+        <div class="success-icon">✓</div>
+
+        <h1 class="success-title">
+            {# ТЕКСТ ОТ БРЕНДА: заголовок — пример #}Заказ успешно оформлен!
+        </h1>
+
+        <p class="success-meta">
+            {# ТЕКСТ ОТ БРЕНДА: номер и статус заказа — пример #}
+            Номер заказа: №{{ order.id }} · Статус: {{ order.get_status_display }}
+        </p>
+
+        <table class="success-table">
+            <thead>
+                <tr>
+                    <th>{# ТЕКСТ ОТ БРЕНДА: заголовок колонки — пример #}Товар</th>
+                    <th>{# ТЕКСТ ОТ БРЕНДА: заголовок колонки — пример #}Цена</th>
+                    <th>{# ТЕКСТ ОТ БРЕНДА: заголовок колонки — пример #}Кол-во</th>
+                    <th>{# ТЕКСТ ОТ БРЕНДА: заголовок колонки — пример #}Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.robot_name }}</td>
+                        <td>{{ item.price|floatformat:0 }} ₽</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.subtotal|floatformat:0 }} ₽</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p class="success-total">
+            {# ТЕКСТ ОТ БРЕНДА: итоговая сумма — пример #}Итого: {{ order.total_price|floatformat:0 }} ₽
+        </p>
+
+        <p class="success-note">
+            {# ТЕКСТ ОТ БРЕНДА: благодарственный текст — пример #}
+            Мы свяжемся с вами в ближайшее время для подтверждения заказа.
+        </p>
+
+        <div class="success-actions">
+            <a href="{% url 'catalog:index' %}" class="btn btn-secondary">
+                {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}В каталог
+            </a>
+            <a href="{% url 'users:profile' %}" class="btn btn-primary">
+                {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}В личный кабинет
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -5,7 +5,8 @@ from django.views.decorators.http import require_POST
 
 from catalog.models import Robot
 
-from .models import Cart, CartItem
+from .forms import OrderForm
+from .models import Cart, CartItem, Order, OrderItem
 
 
 @login_required
@@ -70,3 +71,66 @@ def remove_from_cart(request, item_id):
     item.delete()
     messages.success(request, 'Товар удалён из корзины.')
     return redirect('cart:index')
+
+
+@login_required
+def checkout_view(request):
+    """
+    Оформление заказа: показывает форму с данными покупателя и сводку корзины,
+    по POST создаёт Order + OrderItem'ы (снимок данных) и очищает корзину.
+    """
+    cart, _ = Cart.objects.get_or_create(user=request.user)
+    items = cart.items.select_related('robot').all()
+
+    if cart.is_empty():
+        messages.error(request, 'Добавьте товары в корзину.')
+        return redirect('cart:index')
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = Order.objects.create(
+                user=request.user,
+                first_name=form.cleaned_data['first_name'],
+                email=form.cleaned_data['email'],
+                phone=form.cleaned_data['phone'],
+                address=form.cleaned_data['address'],
+                comment=form.cleaned_data['comment'],
+                total_price=cart.total_price(),
+            )
+            for item in items:
+                OrderItem.objects.create(
+                    order=order,
+                    robot=item.robot,
+                    robot_name=item.robot.name,
+                    price=item.robot.price,
+                    quantity=item.quantity,
+                )
+            items.delete()
+            return redirect('cart:success', order_id=order.id)
+    else:
+        initial = {
+            'first_name': request.user.first_name,
+            'email': request.user.email,
+        }
+        form = OrderForm(initial=initial)
+
+    context = {
+        'form': form,
+        'cart': cart,
+        'items': items,
+    }
+    return render(request, 'cart/checkout.html', context)
+
+
+@login_required
+def order_success_view(request, order_id):
+    """Страница подтверждения успешно оформленного заказа."""
+    order = get_object_or_404(Order, pk=order_id, user=request.user)
+    items = order.items.all()
+
+    context = {
+        'order': order,
+        'items': items,
+    }
+    return render(request, 'cart/success.html', context)

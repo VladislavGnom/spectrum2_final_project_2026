@@ -1,0 +1,96 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{# ТЕКСТ ОТ БРЕНДА: заголовок вкладки — пример #}Оформление заказа — Робот-Забота{% endblock %}
+
+{% block content %}
+<section class="checkout-section">
+    <h1 class="section-title">{# ТЕКСТ ОТ БРЕНДА: заголовок страницы — пример #}Оформление заказа</h1>
+
+    <div class="checkout-grid">
+        <div class="checkout-form-col">
+            <div class="checkout-card">
+                <form method="post" class="checkout-form" novalidate>
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="form-errors">
+                            {% for error in form.non_field_errors %}
+                                <p class="form-error">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="form-group">
+                        <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                        {{ form.first_name }}
+                        {% for error in form.first_name.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                        {{ form.email }}
+                        {% for error in form.email.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+                        {{ form.phone }}
+                        {% for error in form.phone.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.address.id_for_label }}">{{ form.address.label }}</label>
+                        {{ form.address }}
+                        {% for error in form.address.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.comment.id_for_label }}">{{ form.comment.label }}</label>
+                        {{ form.comment }}
+                        {% for error in form.comment.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="checkout-form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Подтвердить заказ
+                        </button>
+                        <a href="{% url 'cart:index' %}" class="btn btn-secondary">
+                            {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Вернуться в корзину
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="checkout-summary-col">
+            <div class="checkout-summary-card">
+                <h2 class="checkout-summary-title">
+                    {# ТЕКСТ ОТ БРЕНДА: заголовок сводки — пример #}Ваш заказ
+                </h2>
+                <ul class="checkout-summary-list">
+                    {% for item in items %}
+                        <li class="checkout-summary-item">
+                            <span class="checkout-summary-item-name">{{ item.robot.name }} × {{ item.quantity }}</span>
+                            <span class="checkout-summary-item-price">{{ item.subtotal|floatformat:0 }} ₽</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="checkout-summary-total">
+                    <span>{# ТЕКСТ ОТ БРЕНДА: подпись итога — пример #}Итого</span>
+                    <span>{{ cart.total_price|floatformat:0 }} ₽</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

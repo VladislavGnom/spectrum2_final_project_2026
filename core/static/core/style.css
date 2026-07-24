@@ -1109,3 +1109,190 @@ img {
         text-align: center;
     }
 }
+
+/* ==== Оформление заказа (checkout) ==== */
+.checkout-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 120px 24px 64px;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.checkout-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    padding: 32px;
+}
+
+.checkout-form-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.checkout-summary-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    padding: 28px;
+    position: sticky;
+    top: 24px;
+}
+
+.checkout-summary-title {
+    color: #333333;
+    font-size: 1.15rem;
+    margin-bottom: 16px;
+}
+
+.checkout-summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+}
+
+.checkout-summary-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F0F0F0;
+    color: #555555;
+    font-size: 0.92rem;
+}
+
+.checkout-summary-total {
+    display: flex;
+    justify-content: space-between;
+    background: #FDF4E3;
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: #333333;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+/* ==== Страница успешного заказа ==== */
+.success-section {
+    display: flex;
+    justify-content: center;
+    padding: 120px 24px 64px;
+}
+
+.success-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    padding: 48px;
+    max-width: 640px;
+    width: 100%;
+    text-align: center;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #6B8E6B;
+    color: #FFFFFF;
+    font-size: 2.2rem;
+    line-height: 80px;
+    margin: 0 auto 20px;
+}
+
+.success-title {
+    color: #333333;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+}
+
+.success-meta {
+    color: #666666;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+}
+
+.success-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.success-table th,
+.success-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #F0F0F0;
+    color: #333333;
+    font-size: 0.9rem;
+}
+
+.success-table th {
+    color: #888888;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.success-total {
+    text-align: right;
+    color: #333333;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.success-note {
+    color: #666666;
+    margin-bottom: 28px;
+}
+
+.success-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==== Адаптив: checkout / success ==== */
+@media (max-width: 900px) {
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-summary-card {
+        position: static;
+    }
+}
+
+@media (max-width: 560px) {
+    .checkout-card,
+    .success-card {
+        padding: 24px;
+    }
+
+    .success-table th,
+    .success-table td {
+        font-size: 0.82rem;
+        padding: 8px 4px;
+    }
+
+    .success-actions,
+    .checkout-form-actions {
+        flex-direction: column;
+    }
+
+    .success-actions .btn,
+    .checkout-form-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
