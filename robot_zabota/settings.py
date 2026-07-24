@@ -90,3 +90,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# --- CSRF для публичного домена Replit ---
+# Замените на реальный домен вашего Repl после первого запуска
+# (Replit покажет его в панели Webview — обычно вида
+# https://<repl-name>.<username>.repl.co или *.replit.dev)
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.repl.co',
+    'https://*.replit.dev',
+]
