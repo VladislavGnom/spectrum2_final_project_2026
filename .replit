@@ -1,15 +1,20 @@
+# .replit
 entrypoint = "main.py"
-modules = ["python-3.12"]
+language = "python3"
 
-[env]
-PYTHONUNBUFFERED = "1"
+[languages.python3]
+pattern = "**/*.py"
 
 [nix]
 channel = "stable-24_05"
 
-[deployment]
-run = ["python3", "main.py"]
+[debugger]
+support = true
 
-[[ports]]
-localPort = 8000
-externalPort = 80
+[packager]
+language = "python3"
+
+[env]
+PORT = "8000"
+# Добавляем настройки, чтобы Pillow работал без ошибок
+LD_LIBRARY_PATH = "/usr/local/lib"

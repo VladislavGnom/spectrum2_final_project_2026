@@ -3,13 +3,14 @@
 Каркас рассчитан на расширение: приложения catalog, cart, blog, users
 уже подключены как заготовки и не требуют переписывания при росте проекта.
 """
+import os
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 # ВНИМАНИЕ: сгенерированный ключ для разработки. Перед продакшеном заменить
 # и вынести в переменные окружения.
-SECRET_KEY = 'django-insecure-change-me-before-deploy-robot-zabota'
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-change-me-before-deploy-robot-zabota')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = ['*', '.onrender.com']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,6 +27,7 @@ INSTALLED_APPS = [
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -78,6 +80,8 @@ USE_I18N = True
 USE_TZ = True
 # --- Static files ---
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # core/static/core/... подхватывается автоматически через APP_DIRS,
 # здесь дополнительно объявляем общую папку static/ в корне проекта
 # на случай общих (не привязанных к приложению) ресурсов в будущем.
