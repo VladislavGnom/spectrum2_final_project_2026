@@ -102,4 +102,12 @@ class OrderItem(models.Model):
         return f'{self.robot_name} × {self.quantity}'
 
     def subtotal(self):
+        """
+        Возвращает сумму по позиции. Может вызываться Django admin'ом
+        на ещё не сохранённом "пустом" экземпляре формы инлайна
+        (шаблон для добавления новой строки), где price/quantity
+        ещё не заполнены — в этом случае возвращаем None вместо ошибки.
+        """
+        if self.price is None or self.quantity is None:
+            return None
         return self.price * self.quantity
