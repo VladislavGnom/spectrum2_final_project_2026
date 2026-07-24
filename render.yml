@@ -14,8 +14,4 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
-        value: False
-    disk:
-      name: sqlite-data
-      mountPath: /opt/render/project/src
-      sizeGB: 1
+        value: True
