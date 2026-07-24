@@ -28,11 +28,30 @@
                 <li><a href="#team" class="nav-link">Команда</a></li>
                 <li><a href="#contact" class="nav-link">Контакты</a></li>
                 <li><a href="{% url 'catalog:index' %}" class="nav-link">Каталог</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'users:profile' %}" class="nav-link">{# ТЕКСТ ОТ БРЕНДА: пункт меню — пример #}Личный кабинет</a></li>
+                    <li class="nav-logout-item">
+                        <form method="post" action="{% url 'users:logout' %}" class="nav-logout-form">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link nav-logout-btn">{# ТЕКСТ ОТ БРЕНДА: пункт меню — пример #}Выйти</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'users:login' %}" class="nav-link">{# ТЕКСТ ОТ БРЕНДА: пункт меню — пример #}Войти</a></li>
+                    <li><a href="{% url 'users:register' %}" class="nav-link">{# ТЕКСТ ОТ БРЕНДА: пункт меню — пример #}Регистрация</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
 
     <main>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="message {% if message.tags %}message-{{ message.tags }}{% endif %}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         {% block content %}{% endblock %}
     </main>
 

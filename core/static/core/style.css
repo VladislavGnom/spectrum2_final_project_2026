@@ -486,3 +486,166 @@ img {
         animation-duration: 0.01ms !important;
     }
 }
+
+/* ==== Авторизация: вход / регистрация / профиль ==== */
+.auth-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 64px 24px;
+    min-height: 60vh;
+}
+
+.auth-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    padding: 40px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+}
+
+.auth-title {
+    color: #333333;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    color: #666666;
+    margin-bottom: 24px;
+}
+
+.auth-form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #333333;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background: #F5F5F5;
+    color: #333333;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #FAF0BE;
+    background: #FFFFFF;
+}
+
+.field-hint {
+    font-size: 0.8rem;
+    color: #888888;
+    margin-top: 4px;
+}
+
+.field-error {
+    font-size: 0.85rem;
+    color: #D4887A;
+    margin-top: 4px;
+}
+
+.form-errors {
+    background: #FDF4E3;
+    border: 1px solid #D4887A;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+}
+
+.form-error {
+    color: #D4887A;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.auth-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 20px;
+    background: #FAF0BE;
+    color: #333333;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.auth-btn:hover {
+    background: #EFE3A0;
+}
+
+.auth-btn-link {
+    margin-top: 12px;
+}
+
+.auth-switch {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666666;
+}
+
+.auth-switch a {
+    color: #333333;
+    font-weight: 600;
+}
+
+.nav-logout-form {
+    display: inline;
+}
+
+.nav-logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+}
+
+/* ==== Django messages ==== */
+.messages {
+    list-style: none;
+    max-width: 700px;
+    margin: 20px auto 0;
+    padding: 0 24px;
+}
+
+.message {
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.message-success {
+    background: #EAF2EA;
+    color: #6B8E6B;
+    border: 1px solid #6B8E6B;
+}
+
+.message-error {
+    background: #FBEAE6;
+    color: #D4887A;
+    border: 1px solid #D4887A;
+}

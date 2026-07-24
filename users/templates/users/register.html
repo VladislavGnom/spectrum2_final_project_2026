@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{# ТЕКСТ ОТ БРЕНДА: заголовок вкладки — пример, заменить после получения стратегии #}Регистрация — Робот-Забота{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="auth-card">
+        <h1 class="auth-title">{# ТЕКСТ ОТ БРЕНДА: заголовок формы регистрации — пример #}Создать аккаунт</h1>
+        <p class="auth-subtitle">{# ТЕКСТ ОТ БРЕНДА: подзаголовок — пример #}Это займёт меньше минуты</p>
+
+        <form method="post" class="auth-form" novalidate>
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {% for error in form.non_field_errors %}
+                        <p class="form-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                {{ form.email }}
+                {% for error in form.email.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                {{ form.first_name }}
+                {% for error in form.first_name.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+                {{ form.password1 }}
+                <p class="field-hint">{{ form.password1.help_text }}</p>
+                {% for error in form.password1.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                {{ form.password2 }}
+                {% for error in form.password2.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="auth-btn">{# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Зарегистрироваться</button>
+        </form>
+
+        <p class="auth-switch">
+            {# ТЕКСТ ОТ БРЕНДА: ссылка на вход — пример #}
+            Уже есть аккаунт? <a href="{% url 'users:login' %}">Войти</a>
+        </p>
+    </div>
+</section>
+{% endblock %}

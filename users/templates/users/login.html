@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{# ТЕКСТ ОТ БРЕНДА: заголовок вкладки — пример, заменить после получения стратегии #}Вход — Робот-Забота{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="auth-card">
+        <h1 class="auth-title">{# ТЕКСТ ОТ БРЕНДА: заголовок формы входа — пример #}Вход в личный кабинет</h1>
+        <p class="auth-subtitle">{# ТЕКСТ ОТ БРЕНДА: подзаголовок — пример #}Рады видеть вас снова</p>
+
+        <form method="post" class="auth-form" novalidate>
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {% for error in form.non_field_errors %}
+                        <p class="form-error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                {{ form.password }}
+                {% for error in form.password.errors %}
+                    <p class="field-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="auth-btn">{# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Войти</button>
+        </form>
+
+        <p class="auth-switch">
+            {# ТЕКСТ ОТ БРЕНДА: ссылка на регистрацию — пример #}
+            Ещё нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрироваться</a>
+        </p>
+    </div>
+</section>
+{% endblock %}

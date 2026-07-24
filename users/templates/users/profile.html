@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{# ТЕКСТ ОТ БРЕНДА: заголовок вкладки — пример, заменить после получения стратегии #}Личный кабинет — Робот-Забота{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="auth-card profile-card">
+        <h1 class="auth-title">
+            {# ТЕКСТ ОТ БРЕНДА: приветствие — пример #}
+            Добро пожаловать, {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.email }}{% endif %}!
+        </h1>
+        <p class="auth-subtitle">
+            {# ТЕКСТ ОТ БРЕНДА: заглушка истории заказов — пример #}
+            Здесь скоро появится история ваших заказов.
+        </p>
+        <a href="{% url 'catalog:index' %}" class="auth-btn auth-btn-link">
+            {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}В каталог
+        </a>
+    </div>
+</section>
+{% endblock %}
