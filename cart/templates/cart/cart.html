@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load ru_plural %}
 
 {% block title %}Корзина — Робот-Забота{% endblock %}
 
@@ -65,7 +66,7 @@
         <div class="cart-summary">
             <p class="cart-summary-text">
                 {# ТЕКСТ ОТ БРЕНДА: итоговая строка — пример #}
-                Итого: {{ cart.total_items }} {{ cart.total_items|pluralize:"товар,товара,товаров" }} на сумму {{ cart.total_price|floatformat:0 }} ₽
+                Итого: {{ cart.total_items }} {{ cart.total_items|ru_pluralize:"товар,товара,товаров" }} на сумму {{ cart.total_price|floatformat:0 }} ₽
             </p>
         </div>
 
