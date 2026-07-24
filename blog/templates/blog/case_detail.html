@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ page_title }} — Робот-Забота{% endblock %}
+
+{% block content %}
+<section class="case-detail-section">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <a href="{% url 'core:index' %}">Главная</a>
+        <span class="breadcrumbs-sep">/</span>
+        <a href="{% url 'blog:index' %}">Блог</a>
+        <span class="breadcrumbs-sep">/</span>
+        <span class="breadcrumbs-current">{{ case.title }}</span>
+    </nav>
+
+    {% if case.image_placeholder %}
+        {# ЗАМЕНИТЬ: фото/видео из истории 800x300 #}
+        <div class="case-detail-visual">
+            <span class="case-detail-icon">♥</span>
+        </div>
+    {% endif %}
+
+    <div class="case-detail-card">
+        <h1 class="case-detail-title">{{ case.title }}</h1>
+
+        <p class="case-detail-text">{{ case.full_text }}</p>
+
+        <div class="case-detail-result">
+            <span class="case-detail-result-label">
+                {# ТЕКСТ ОТ БРЕНДА: подпись плашки — пример #}Результат
+            </span>
+            <p class="case-detail-result-text">{{ case.result }}</p>
+        </div>
+
+        <div class="case-detail-actions">
+            <a href="{% url 'blog:index' %}" class="btn btn-secondary">
+                {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Все истории
+            </a>
+            <a href="{% url 'catalog:index' %}" class="btn btn-primary">
+                {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}В каталог
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

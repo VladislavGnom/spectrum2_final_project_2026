@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ page_title }} — Робот-Забота{% endblock %}
+
+{% block content %}
+<section class="blog-section">
+    <div class="blog-header">
+        <h1 class="section-title">{{ page_title }}</h1>
+        <p class="blog-intro">
+            {# ТЕКСТ ОТ БРЕНДА: подзаголовок раздела — пример, заменить после получения стратегии #}
+            Реальные истории семей, которым помогла наша робот-няня
+        </p>
+    </div>
+
+    <div class="blog-grid">
+        {% for case in cases %}
+            <div class="case-card">
+                {% if case.image_placeholder %}
+                    {# ЗАМЕНИТЬ: фото/видео из истории 400x250 #}
+                    <div class="case-card-visual">
+                        <span class="case-card-icon">💬</span>
+                    </div>
+                {% endif %}
+
+                <div class="case-card-body">
+                    <h2 class="case-card-title">{{ case.title }}</h2>
+                    <p class="case-card-preview">{{ case.preview }}</p>
+
+                    <div class="case-card-result">
+                        <span class="case-card-result-label">
+                            {# ТЕКСТ ОТ БРЕНДА: подпись плашки — пример #}Результат:
+                        </span>
+                        {{ case.result }}
+                    </div>
+
+                    <a href="{% url 'blog:case_detail' case.id %}" class="btn btn-primary case-card-btn">
+                        {# ТЕКСТ ОТ БРЕНДА: кнопка — пример #}Читать историю
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

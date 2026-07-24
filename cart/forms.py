@@ -1,4 +1,21 @@
+import re
+
 from django import forms
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+
+
+# Домены временных/одноразовых почтовых сервисов.
+# ПОПОЛНИТЬ при необходимости — список не исчерпывающий.
+DISPOSABLE_EMAIL_DOMAINS = {
+    'mailinator.com',
+    'tempmail.com',
+    '10minutemail.com',
+    'guerrillamail.com',
+    'throwawaymail.com',
+    'yopmail.com',
+    'temp-mail.org',
+}
 
 
 class OrderForm(forms.Form):
@@ -33,3 +50,52 @@ class OrderForm(forms.Form):
         required=False,
         widget=forms.Textarea(attrs={'rows': 3, 'placeholder': 'Дополнительная информация...'}),
     )
+
+    def clean_phone(self):
+        """
+        Приводит телефон к единому формату +7XXXXXXXXXX.
+
+        Принимает российские номера, начинающиеся с +7 или 8
+        и содержащие ровно 11 цифр (например: +7 (999) 123-45-67,
+        89991234567, +79991234567).
+        """
+        raw = self.cleaned_data.get('phone', '')
+
+        # Оставляем только цифры и ведущий "+", остальное (скобки, дефисы,
+        # пробелы) отбрасываем.
+        cleaned = re.sub(r'(?!^\+)[^\d]', '', raw.strip())
+        digits = re.sub(r'\D', '', cleaned)
+
+        error = ValidationError(
+            'Введите корректный номер телефона (например, +7 999 123-45-67)'
+        )
+
+        if len(digits) != 11:
+            raise error
+
+        if digits.startswith('8'):
+            digits = '7' + digits[1:]
+        elif not digits.startswith('7'):
+            raise error
+
+        return f'+{digits}'
+
+    def clean_email(self):
+        """
+        Нормализует email (нижний регистр, без пробелов по краям),
+        проверяет его валидность и отклоняет одноразовые почтовые домены.
+        """
+        email = self.cleaned_data.get('email', '').strip().lower()
+
+        try:
+            validate_email(email)
+        except ValidationError:
+            raise ValidationError('Введите корректный email.')
+
+        domain = email.rsplit('@', 1)[-1]
+        if domain in DISPOSABLE_EMAIL_DOMAINS:
+            raise ValidationError(
+                'Пожалуйста, укажите постоянный email. Временные адреса не принимаются.'
+            )
+
+        return email
